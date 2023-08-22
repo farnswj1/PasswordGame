@@ -7,7 +7,6 @@ import {
   FormControl,
   InputLabel,
   OutlinedInput,
-  Slide,
   Typography
 } from '@mui/material';
 import { validate } from 'libs';
