@@ -7,6 +7,7 @@ import {
   FormControl,
   InputLabel,
   OutlinedInput,
+  Stack,
   Typography
 } from '@mui/material';
 import { validate } from 'libs';
@@ -16,7 +17,8 @@ const PasswordForm: FC = () => {
   const passwordLength = password.length;
   const isEmpty = (password === '');
   const error = validate(password);
-  const disabled = Boolean(error);
+  const disabled = Boolean(error || isEmpty);
+  const displayError = Boolean(error && !isEmpty);
 
   return (
     <Box component="form" maxWidth="sm" width="100%">
@@ -31,11 +33,7 @@ const PasswordForm: FC = () => {
           onChange={event => setPassword(event.target.value)}
         />
       </FormControl>
-      <Typography variant="subtitle2">
-        {passwordLength > 0 && passwordLength}
-        &nbsp;
-      </Typography>
-      <Box marginY={3}>
+      <Stack direction="row" spacing={2} alignItems="center" marginY={3}>
         <Button
           variant="contained"
           color="success"
@@ -44,8 +42,16 @@ const PasswordForm: FC = () => {
         >
           Submit
         </Button>
-      </Box>
-      <Fade in={!isEmpty && !!error} mountOnEnter unmountOnExit>
+        {
+          passwordLength > 0 && (
+            <Typography variant="subtitle2">
+              {passwordLength}
+            </Typography>
+          )
+        }
+        
+      </Stack>
+      <Fade in={displayError} mountOnEnter unmountOnExit>
         <Alert severity="error">
           {error}
         </Alert>
