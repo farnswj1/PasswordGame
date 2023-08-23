@@ -17,6 +17,7 @@ const ROMAN_NUMERAL_HASH = {
   D: 500,
   M: 1000
 };
+const PERIOIDIC_TABLE_REGEX = /A[cglmrstu]|B[aehikr]?|C[adeflmnorsu]?|D[bsy]|E[rsu]|F[elmr]?|G[ade]|H[efgos]?|I[nr]?|Kr?|L[airuv]|M[cdgnot]|N[abdehiop]?|O[gs]?|P[abdmortu]?|R[abefghnu]|S[bcegimnr]?|T[abcehilms]|U|V|W|Xe|Yb?|Z[nr]/;
 
 const getSumOfDigits = (password: string) => {
   const digits = password.matchAll(NUMBERS_REGEX);
@@ -59,16 +60,17 @@ const romanNumeralToInt = (numeral: string) => {
   return sum;
 };
 
-const getSumOfRomanNumerals = (password: string) => {
-  const numerals = password.matchAll(ROMAN_NUMERALS_REGEX);
-  let sum = 0;
+const getProductOfRomanNumerals = (password: string) => {
+  const numerals = password.match(ROMAN_NUMERALS_REGEX);
+  let product = 1;
 
-  for (let numeral of numerals) {
-    console.log(numeral);
-    sum += romanNumeralToInt(String(numeral));
+  if (numerals) {
+    for (let numeral of numerals) {
+      product *= romanNumeralToInt(numeral);
+    }
   }
 
-  return sum;
+  return product;
 };
 
 const validate = (password: string) => {
@@ -90,8 +92,14 @@ const validate = (password: string) => {
     error = 'Your password must include a Roman numeral.';
   } else if (!SPONSORS.test(password)) {
     error = 'Your password must include a sponsor.';
-  } else if (getSumOfRomanNumerals(password) !== 35) {
+  } else if (getProductOfRomanNumerals(password) !== 35) {
     error = 'The Roman numerals in your password should multiply to 35.';
+  } else if (false) { // TODO: reCAPTCHA rule
+    error = 'Your password must include this CAPTCHA.';
+  } else if (false) { // TODO: Wordle rule (https://www.nytimes.com/svc/wordle/v2/2023-08-23.json)
+    error = 'Your password must include today\'s Wordle answer.';
+  } else if (!PERIOIDIC_TABLE_REGEX.test(password)) {
+    error = 'Your password must include a two letter symbol from the periodic table.';
   }
 
   return error;

@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { Box, createTheme, PaletteMode, ThemeProvider, useMediaQuery } from '@mui/material';
-import { yellow } from '@mui/material/colors';
+import { teal } from '@mui/material/colors';
 import { ColorModeContext } from 'contexts';
 import { Home } from 'pages';
 
@@ -13,9 +13,12 @@ const App: FC = () => {
     () => createTheme({
       palette: {
         mode: colorMode,
-        primary: yellow,
+        primary: {
+          main: teal[500]
+        },
         background: {
-          default: colorMode === 'dark' ? '#343434' : '#ffffff'
+          default: colorMode === 'dark' ? '#343434' : '#ffffff',
+          paper: teal[500]
         }
       }
     }),
