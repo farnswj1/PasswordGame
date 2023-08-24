@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from 'react';
+import { FC, FormEvent, useMemo, useState } from 'react';
 import {
   Alert,
   Box,
@@ -12,14 +12,16 @@ import { validate } from 'libs';
 
 const PasswordForm: FC = () => {
   const [password, setPassword] = useState<string>('');
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const error = useMemo(() => validate(password), [password]);
   const passwordLength = password.length;
   const isEmpty = (password === '');
-  const error = validate(password);
-  const disabled = Boolean(error || isEmpty);
-  const displayError = Boolean(error && !isEmpty);
+  const disabled = Boolean(error || isEmpty || submitted);
+  const displayError = Boolean(error && !isEmpty && !submitted);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitted(true);
   };
 
   return (
@@ -59,6 +61,11 @@ const PasswordForm: FC = () => {
       <Fade in={displayError} mountOnEnter unmountOnExit>
         <Alert variant="outlined" severity="error">
           {error}
+        </Alert>
+      </Fade>
+      <Fade in={submitted} mountOnEnter unmountOnExit>
+        <Alert variant="outlined" severity="success">
+          You have successfully submitted a password.
         </Alert>
       </Fade>
     </Box>
