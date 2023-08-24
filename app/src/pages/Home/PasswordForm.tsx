@@ -48,7 +48,7 @@ const PasswordForm: FC = () => {
         }
       </Stack>
       <Fade in={displayError} mountOnEnter unmountOnExit>
-        <Alert severity="error">
+        <Alert variant="outlined" severity="error">
           {error}
         </Alert>
       </Fade>
