@@ -98,7 +98,7 @@ const sumOfElements = (password: string) => {
       sum += PERIODIC_TABLE[String(element) as ChemicalElement];
     }
   }
-  console.log(sum)
+
   return sum;
 };
 
