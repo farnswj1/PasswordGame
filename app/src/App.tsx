@@ -46,7 +46,7 @@ const App: FC = () => {
             }}
           >
             <Header />
-            <Box component="main" role="main" padding={5}>
+            <Box component="main" role="main" padding={5} height="100%">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<PageNotFound />} />

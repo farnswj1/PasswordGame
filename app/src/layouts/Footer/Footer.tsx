@@ -5,7 +5,7 @@ const Footer: FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <Box component="footer" marginTop="auto">
+    <Box component="footer">
       <Container maxWidth="lg">
         <Box textAlign="center" paddingY={3}>
           <Typography variant="subtitle1">
