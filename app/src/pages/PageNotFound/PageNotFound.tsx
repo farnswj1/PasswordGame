@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Stack, Typography } from '@mui/material';
+import { Button, Container, Stack, Typography } from '@mui/material';
 
 const PageNotFound: FC = () => {
   const navigate = useNavigate();
@@ -11,21 +11,23 @@ const PageNotFound: FC = () => {
   });
 
   return (
-    <Stack spacing={5} justifyContent="center" alignItems="center">
-      <Typography variant="h4" textAlign="center">
-        Page Not Found
-      </Typography>
-      <Stack spacing={3}>
-        <Typography variant="body1">
-          It appears you are lost. Redirecting...
+    <Container maxWidth="lg">
+      <Stack spacing={5} justifyContent="center" alignItems="center">
+        <Typography variant="h4" textAlign="center">
+          Page Not Found
         </Typography>
-        <Link to="/">
-          <Button variant="contained">
-            Go Home
-          </Button>
-        </Link>
+        <Stack spacing={3}>
+          <Typography variant="body1">
+            It appears you are lost. Redirecting...
+          </Typography>
+          <Link to="/">
+            <Button variant="contained">
+              Go Home
+            </Button>
+          </Link>
+        </Stack>
       </Stack>
-    </Stack>
+    </Container>
   );
 };
 
