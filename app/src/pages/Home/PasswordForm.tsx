@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import {
   Alert,
   Box,
@@ -18,8 +18,17 @@ const PasswordForm: FC = () => {
   const disabled = Boolean(error || isEmpty);
   const displayError = Boolean(error && !isEmpty);
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
   return (
-    <Box component="form" maxWidth="sm" width="100%">
+    <Box
+      component="form"
+      maxWidth="sm"
+      width="100%"
+      onSubmit={handleSubmit}
+    >
       <TextField
         type="text"
         name="password"
