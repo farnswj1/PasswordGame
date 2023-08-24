@@ -4,10 +4,8 @@ import {
   Box,
   Button,
   Fade,
-  FormControl,
-  InputLabel,
-  OutlinedInput,
   Stack,
+  TextField,
   Typography
 } from '@mui/material';
 import { validate } from 'libs';
@@ -22,17 +20,16 @@ const PasswordForm: FC = () => {
 
   return (
     <Box component="form" maxWidth="sm" width="100%">
-      <FormControl fullWidth required>
-        <InputLabel htmlFor="password">Enter a password</InputLabel>
-        <OutlinedInput
-          type="text"
-          name="password"
-          label="Enter a password"
-          multiline
-          maxRows={10}
-          onChange={event => setPassword(event.target.value)}
-        />
-      </FormControl>
+      <TextField
+        type="text"
+        name="password"
+        label="Enter a password"
+        multiline
+        maxRows={10}
+        onChange={event => setPassword(event.target.value)}
+        fullWidth
+        required
+      />
       <Stack direction="row" spacing={2} alignItems="center" marginY={3}>
         <Button
           variant="contained"
@@ -49,7 +46,6 @@ const PasswordForm: FC = () => {
             </Typography>
           )
         }
-        
       </Stack>
       <Fade in={displayError} mountOnEnter unmountOnExit>
         <Alert severity="error">
