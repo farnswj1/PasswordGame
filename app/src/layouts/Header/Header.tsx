@@ -22,7 +22,7 @@ const Header: FC = () => {
   return (
     <Box component="header">
       <AppBar position="static">
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Typography variant="h6" marginRight="auto" sx={{ userSelect: 'none' }}>
               Password Game

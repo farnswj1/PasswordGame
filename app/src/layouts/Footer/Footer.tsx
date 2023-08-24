@@ -6,7 +6,7 @@ const Footer: FC = () => {
 
   return (
     <Box component="footer" marginTop="auto">
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box textAlign="center" paddingY={3}>
           <Typography variant="subtitle1">
             &copy; {year} Justin Farnsworth
