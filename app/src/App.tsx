@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
   Box,
@@ -16,21 +16,18 @@ const App: FC = () => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [colorMode, setColorMode] = useState<PaletteMode>(prefersDarkMode ? 'dark' : 'light');
 
-  const theme = useMemo(
-    () => createTheme({
-      palette: {
-        mode: colorMode,
-        primary: {
-          main: teal[500]
-        },
-        background: {
-          default: colorMode === 'dark' ? '#343434' : '#ffffff',
-          paper: teal[500]
-        }
+  const theme = createTheme({
+    palette: {
+      mode: colorMode,
+      primary: {
+        main: teal[500]
+      },
+      background: {
+        default: colorMode === 'dark' ? '#343434' : '#ffffff',
+        paper: teal[500]
       }
-    }),
-    [colorMode]
-  );
+    }
+  });
 
   return (
     <ColorModeContext.Provider value={setColorMode}>
