@@ -32,7 +32,7 @@ const Header: FC = () => {
               arrow
             >
               <IconButton color="inherit" onClick={handleColorMode}>
-                {isDarkMode ? <LightMode /> : <DarkMode />}
+                {isDarkMode ? <DarkMode /> : <LightMode />}
               </IconButton>
             </Tooltip>
           </Toolbar>
