@@ -23,7 +23,11 @@ const Header: FC = () => {
   const isDarkMode = palette.mode === 'dark';
 
   return (
-    <AppBar component="header" position="static">
+    <AppBar
+      component="header"
+      position="static"
+      enableColorOnDark
+    >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Stack

@@ -23,8 +23,7 @@ const App: FC = () => {
         main: teal[500]
       },
       background: {
-        default: colorMode === 'dark' ? '#343434' : '#ffffff',
-        paper: teal[500]
+        default: colorMode === 'dark' ? '#343434' : '#ffffff'
       }
     }
   });
