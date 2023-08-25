@@ -1,26 +1,16 @@
 import { FC, FormEvent, useMemo, useState } from 'react';
-import {
-  Alert,
-  Box,
-  Button,
-  Fade,
-  Stack,
-  TextField,
-  Typography,
-  useTheme
-} from '@mui/material';
+import { Box, Button, Stack, TextField, Typography } from '@mui/material';
+import { AnimatedAlert } from 'components';
 import { validate } from 'libs';
 
 const PasswordForm: FC = () => {
   const [password, setPassword] = useState<string>('');
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const { palette } = useTheme();
   const error = useMemo(() => validate(password), [password]);
   const passwordLength = password.length;
   const isEmpty = (password === '');
   const disabled = Boolean(error || isEmpty || submitted);
   const displayError = Boolean(error && !isEmpty && !submitted);
-  const alertVariant = palette.mode === 'light' ? 'filled' : 'outlined';
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -61,16 +51,12 @@ const PasswordForm: FC = () => {
           )
         }
       </Stack>
-      <Fade in={displayError} mountOnEnter unmountOnExit>
-        <Alert variant={alertVariant} severity="error">
-          {error}
-        </Alert>
-      </Fade>
-      <Fade in={submitted} mountOnEnter unmountOnExit>
-        <Alert variant={alertVariant} severity="success">
-          You have successfully submitted a password.
-        </Alert>
-      </Fade>
+      <AnimatedAlert in={displayError} severity="error">
+        {error}
+      </AnimatedAlert>
+      <AnimatedAlert in={submitted} severity="success">
+        You have successfully submitted a password.
+      </AnimatedAlert>
     </Box>
   );
 };
