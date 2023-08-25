@@ -4,6 +4,7 @@ import {
   Box,
   Container,
   IconButton,
+  Stack,
   Toolbar,
   Tooltip,
   Typography,
@@ -11,6 +12,7 @@ import {
 } from '@mui/material';
 import { DarkMode, LightMode } from '@mui/icons-material';
 import { useColorMode } from 'hooks';
+import Logo from 'assets/images/logo.png';
 
 const Header: FC = () => {
   const { palette } = useTheme();
@@ -24,9 +26,24 @@ const Header: FC = () => {
       <AppBar position="static">
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <Typography variant="h6" marginRight="auto" sx={{ userSelect: 'none' }}>
-              Password Game
-            </Typography>
+            <Stack
+              direction="row"
+              spacing={1}
+              justifyContent="center"
+              alignItems="center"
+              marginRight="auto"
+              sx={{ userSelect: 'none' }}
+            >
+              <Box
+                component="img"
+                src={Logo}
+                maxWidth={32}
+                maxHeight="auto"
+              />
+              <Typography variant="h6">
+                Password Game
+              </Typography>
+            </Stack>
             <Tooltip
               title={`Enable ${isDarkMode ? 'light' : 'dark'} mode.`}
               arrow
