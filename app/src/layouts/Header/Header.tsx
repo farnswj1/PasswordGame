@@ -10,8 +10,9 @@ import {
   Typography,
   useTheme
 } from '@mui/material';
-import { DarkMode, LightMode } from '@mui/icons-material';
 import { useColorMode } from 'hooks';
+import DarkMode from '@mui/icons-material/DarkMode';
+import LightMode from '@mui/icons-material/LightMode';
 import Logo from 'assets/images/logo.png';
 
 const Header: FC = () => {
