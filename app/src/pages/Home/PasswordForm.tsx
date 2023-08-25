@@ -6,18 +6,21 @@ import {
   Fade,
   Stack,
   TextField,
-  Typography
+  Typography,
+  useTheme
 } from '@mui/material';
 import { validate } from 'libs';
 
 const PasswordForm: FC = () => {
   const [password, setPassword] = useState<string>('');
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const { palette } = useTheme();
   const error = useMemo(() => validate(password), [password]);
   const passwordLength = password.length;
   const isEmpty = (password === '');
   const disabled = Boolean(error || isEmpty || submitted);
   const displayError = Boolean(error && !isEmpty && !submitted);
+  const alertVariant = palette.mode === 'light' ? 'filled' : 'outlined';
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -59,12 +62,12 @@ const PasswordForm: FC = () => {
         }
       </Stack>
       <Fade in={displayError} mountOnEnter unmountOnExit>
-        <Alert variant="outlined" severity="error">
+        <Alert variant={alertVariant} severity="error">
           {error}
         </Alert>
       </Fade>
       <Fade in={submitted} mountOnEnter unmountOnExit>
-        <Alert variant="outlined" severity="success">
+        <Alert variant={alertVariant} severity="success">
           You have successfully submitted a password.
         </Alert>
       </Fade>
