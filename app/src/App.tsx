@@ -36,10 +36,8 @@ const App: FC = () => {
             display="flex"
             flexDirection="column"
             height="100%"
-            sx={{
-              bgcolor: 'background.default',
-              color: 'text.primary'
-            }}
+            bgcolor="background.default"
+            color="text.primary"
           >
             <Header />
             <Box component="main" role="main" paddingY={5} height="100%">
