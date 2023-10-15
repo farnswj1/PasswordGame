@@ -1,8 +1,10 @@
 import { FC, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Container, Stack, Typography } from '@mui/material';
+import { setTitle } from 'utils';
 
 const PageNotFound: FC = () => {
+  setTitle('Page Not Found');
   const navigate = useNavigate();
 
   useEffect(() => {
