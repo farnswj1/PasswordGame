@@ -20,11 +20,9 @@ const PageNotFound: FC = () => {
           <Typography variant="body1">
             It appears you are lost. Redirecting...
           </Typography>
-          <Link to="/">
-            <Button variant="contained">
-              Go Home
-            </Button>
-          </Link>
+          <Button component={Link} variant="contained" to="/">
+            Go Home
+          </Button>
         </Stack>
       </Stack>
     </Container>
