@@ -10,7 +10,7 @@ const PageNotFound: FC = () => {
   useEffect(() => {
     const interval = setInterval(() => navigate('/'), 2000);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <Container maxWidth="lg">
