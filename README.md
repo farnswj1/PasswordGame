@@ -2,6 +2,19 @@
 This is an implementation of the Password Game.
 
 ## Running the Application
+The project uses the following:
+- TypeScript
+- NPM
+- React
+- Material-UI
+- Vite
+- Nginx
+- Certbot
+- Docker
+- Docker Compose
+
+For additional information on project specifications, see ```app/package.json```.
+
 To run the application, run `docker compose up -d --build`, then enter
 http://localhost in your broswer.
 
