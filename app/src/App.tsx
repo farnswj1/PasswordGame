@@ -40,7 +40,14 @@ const App: FC = () => {
             color="text.primary"
           >
             <Header />
-            <Box component="main" role="main" paddingY={5} height="100%">
+            <Box
+              component="main"
+              role="main"
+              bgcolor="inherit"
+              color="inherit"
+              paddingY={5}
+              marginBottom="auto"
+            >
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<PageNotFound />} />
