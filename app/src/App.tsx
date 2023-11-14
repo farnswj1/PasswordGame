@@ -8,28 +8,28 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { teal } from '@mui/material/colors';
-import { ColorModeContext } from 'contexts';
+import { PaletteModeContext } from 'contexts';
 import { Home, PageNotFound } from 'pages';
 import { Footer, Header } from 'layouts';
 
 const App: FC = () => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const [colorMode, setColorMode] = useState<PaletteMode>(prefersDarkMode ? 'dark' : 'light');
+  const [paletteMode, setPaletteMode] = useState<PaletteMode>(prefersDarkMode ? 'dark' : 'light');
 
   const theme = createTheme({
     palette: {
-      mode: colorMode,
+      mode: paletteMode,
       primary: {
         main: teal[500]
       },
       background: {
-        default: colorMode === 'dark' ? '#343434' : '#ffffff'
+        default: paletteMode === 'dark' ? '#343434' : '#ffffff'
       }
     }
   });
 
   return (
-    <ColorModeContext.Provider value={setColorMode}>
+    <PaletteModeContext.Provider value={setPaletteMode}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Box
@@ -57,7 +57,7 @@ const App: FC = () => {
           </Box>
         </BrowserRouter>
       </ThemeProvider>
-    </ColorModeContext.Provider>
+    </PaletteModeContext.Provider>
   );
 };
 

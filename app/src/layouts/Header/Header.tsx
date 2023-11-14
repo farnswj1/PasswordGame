@@ -10,16 +10,16 @@ import {
   Typography,
   useTheme
 } from '@mui/material';
-import { useColorMode } from 'hooks';
+import { usePaletteMode } from 'hooks';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
 import Logo from 'assets/images/logo.png';
 
 const Header: FC = () => {
   const { palette } = useTheme();
-  const setColorMode = useColorMode();
+  const setPaletteMode = usePaletteMode();
 
-  const handleColorMode = () => setColorMode(palette.mode === 'light' ? 'dark' : 'light');
+  const handlePaletteMode = () => setPaletteMode(palette.mode === 'light' ? 'dark' : 'light');
   const isDarkMode = palette.mode === 'dark';
 
   return (
@@ -52,7 +52,7 @@ const Header: FC = () => {
             title={`Enable ${isDarkMode ? 'light' : 'dark'} mode.`}
             arrow
           >
-            <IconButton color="inherit" onClick={handleColorMode}>
+            <IconButton color="inherit" onClick={handlePaletteMode}>
               {isDarkMode ? <DarkMode /> : <LightMode />}
             </IconButton>
           </Tooltip>
