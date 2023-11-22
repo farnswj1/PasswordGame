@@ -1,8 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
   Box,
   createTheme,
+  CssBaseline,
   PaletteMode,
   ThemeProvider,
   useMediaQuery
@@ -14,7 +15,14 @@ import { Footer, Header } from 'layouts';
 
 const App: FC = () => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const [paletteMode, setPaletteMode] = useState<PaletteMode>(prefersDarkMode ? 'dark' : 'light');
+  let initialMode = localStorage.getItem('mode') as PaletteMode | null;
+
+  if (initialMode === null) {
+    initialMode = prefersDarkMode ? 'dark' : 'light';
+  }
+
+  const [paletteMode, setPaletteMode] = useState<PaletteMode>(initialMode);
+  useEffect(() => localStorage.setItem('mode', paletteMode), [paletteMode]);
 
   const theme = createTheme({
     palette: {
@@ -31,30 +39,16 @@ const App: FC = () => {
   return (
     <PaletteModeContext.Provider value={setPaletteMode}>
       <ThemeProvider theme={theme}>
+        <CssBaseline enableColorScheme />
         <BrowserRouter>
-          <Box
-            display="flex"
-            flexDirection="column"
-            height="100%"
-            bgcolor="background.default"
-            color="text.primary"
-          >
-            <Header />
-            <Box
-              component="main"
-              role="main"
-              bgcolor="inherit"
-              color="inherit"
-              paddingY={5}
-              marginBottom="auto"
-            >
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="*" element={<PageNotFound />} />
-              </Routes>
-            </Box>
-            <Footer />
+          <Header />
+          <Box component="main" paddingY={5} marginBottom="auto">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
           </Box>
+          <Footer />
         </BrowserRouter>
       </ThemeProvider>
     </PaletteModeContext.Provider>
